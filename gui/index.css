@@ -1,0 +1,62 @@
+body {
+    background-color: rgb(245, 245, 245);
+}
+
+
+.heading {
+    text-align: center;
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.tool-container {
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.network-discovery {
+    margin-bottom: 50px;
+}
+
+.text {
+    
+    margin-bottom: 10px;
+}
+
+.input-field {
+    margin-left: 30px;
+}
+
+.arp-spoof {
+    margin-bottom: 60px;
+}
+
+.arp-spoof-button {
+    margin-left: 30px;
+}
+
+.targetIP-input {
+    margin-left: 10px;
+}
+
+.routerIP-input {
+    margin-left: 6px;
+}
+
+.column {
+    margin-left: 45px;
+}
+
+.column-data {
+    margin-left: 50px;
+    text-align: center;
+}
+
+.view-data-button {
+    margin: 30px;
+}
